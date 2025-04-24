@@ -12,7 +12,7 @@ public class RequestDispatcher {
         String path = request.getPath();
 
 
-        if (path.startsWith("/create") && request.getMethod().equals("POST")) {
+        if (path.equals("/create") && request.getMethod().equals("POST")) {
             UserController.handleCreateUser(request, response);
         }
 

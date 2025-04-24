@@ -6,12 +6,13 @@ import webserver.ContentType;
 import webserver.WebServer;
 import webserver.request.HttpRequest;
 import webserver.response.HttpResponse;
+import static webserver.WebServer.logger;
 
 import java.io.*;
 
 public class StaticFileHandler {
     private static String basePath = "C:\\CodeSquad-Project-WebServer\\be-was-neon\\src\\main\\resources\\static";
-    private static final Logger logger = LoggerFactory.getLogger(WebServer.class);
+
     public static void handle(HttpRequest request, HttpResponse response) throws IOException {
         File file = new File(basePath + request.getPath());
 

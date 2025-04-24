@@ -1,12 +1,15 @@
 package webserver.request;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import webserver.WebServer;
+
 import java.io.*;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Logger;
-
+import static webserver.WebServer.logger;
 public class HttpRequest {
     private String method;
     private String path;
@@ -51,9 +54,8 @@ public class HttpRequest {
             //todo : 요청 body를 최대 contentLength 만큼 읽어서 charBody 배열에 넣는다
             br.read(charBody,0, contentLength);
             String body = new String(charBody);
-            //todo : logger로 확인!
-            System.out.println(body);
-            System.out.println("============================");
+            logger.info(body);
+
 
             String[] params = body.split("&");
             //todo: params의 사이즈가 2 이상이면 ->
@@ -61,8 +63,7 @@ public class HttpRequest {
                 String[] kv = param.split("=");
                 queryParams.put(kv[0],URLDecoder.decode(kv[1], StandardCharsets.UTF_8));
             }
-
-            System.out.println(queryParams);
+            logger.info(queryParams.toString());
         }
 
     }

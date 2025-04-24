@@ -3,6 +3,8 @@ package webserver.response;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+import static webserver.WebServer.logger;
+
 public class HttpResponse {
     private final DataOutputStream dos;
 
@@ -32,8 +34,7 @@ public class HttpResponse {
             dos.writeBytes("HTTP/1.1 302 Found\r\n");
             dos.writeBytes("Location: "+location+"\r\n");
         }catch (IOException e){
-            //todo : Logger로..
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
 
     }
